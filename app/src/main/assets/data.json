@@ -1,0 +1,318 @@
+{
+  "words": {
+    "pirate": [
+      "pi",
+      "ra",
+      "te"
+    ],
+    "abeille": [
+      "a",
+      "bei",
+      "lle"
+    ],
+    "papillon": [
+      "pa",
+      "pi",
+      "llon"
+    ],
+    "voiture": [
+      "voi",
+      "tu",
+      "re"
+    ],
+    "etoile": [
+      "e",
+      "toi",
+      "le"
+    ],
+    "tomate": [
+      "to",
+      "ma",
+      "te"
+    ],
+    "pantalon": [
+      "pan",
+      "ta",
+      "lon"
+    ],
+    "ananas": [
+      "a",
+      "na",
+      "nas"
+    ],
+    "chocolat": [
+      "cho",
+      "co",
+      "lat"
+    ],
+    "herisson": [
+      "he",
+      "ri",
+      "sson"
+    ],
+    "champignons": [
+      "cham",
+      "pi",
+      "gnons"
+    ],
+    "escargot": [
+      "es",
+      "car",
+      "got"
+    ],
+    "toboggan": [
+      "to",
+      "bo",
+      "ggan"
+    ],
+    "avocat": [
+      "a",
+      "vo",
+      "cat"
+    ],
+    "parasol": [
+      "pa",
+      "ra",
+      "sol"
+    ],
+    "carotte": [
+      "ca",
+      "ro",
+      "tte"
+    ],
+    "camera": [
+      "ca",
+      "me",
+      "ra"
+    ],
+    "kangourou": [
+      "kan",
+      "gou",
+      "rou"
+    ],
+    "abricot": [
+      "a",
+      "bri",
+      "cot"
+    ],
+    "orange": [
+      "o",
+      "ran",
+      "ge"
+    ],
+    "citrouille": [
+      "ci",
+      "trou",
+      "ille"
+    ],
+    "magicien": [
+      "ma",
+      "gi",
+      "cien"
+    ],
+    "escalier": [
+      "es",
+      "ca",
+      "lier"
+    ],
+    "jardinier": [
+      "jar",
+      "di",
+      "nier"
+    ],
+    "bricoleur": [
+      "bri",
+      "co",
+      "leur"
+    ],
+    "lavabo": [
+      "la",
+      "va",
+      "bo"
+    ],
+    "biberon": [
+      "bi",
+      "be",
+      "ron"
+    ],
+    "arrosoir": [
+      "a",
+      "rro",
+      "soir"
+    ],
+    "cerise": [
+      "ce",
+      "ri",
+      "se"
+    ],
+    "peinture": [
+      "pein",
+      "tu",
+      "re"
+    ],
+    "valise": [
+      "va",
+      "li",
+      "se"
+    ],
+    "tulipe": [
+      "tu",
+      "li",
+      "pe"
+    ],
+    "koala": [
+      "ko",
+      "a",
+      "la"
+    ],
+    "olive": [
+      "o",
+      "li",
+      "ve"
+    ],
+    "ecole": [
+      "e",
+      "co",
+      "le"
+    ],
+    "bobine": [
+      "bo",
+      "bi",
+      "ne"
+    ],
+    "peluche": [
+      "pe",
+      "lu",
+      "che"
+    ],
+    "cabane": [
+      "ca",
+      "ba",
+      "ne"
+    ],
+    "banane": [
+      "ba",
+      "na",
+      "ne"
+    ],
+    "cartable": [
+      "car",
+      "ta",
+      "ble"
+    ],
+    "fromage": [
+      "fro",
+      "ma",
+      "ge"
+    ],
+    "montagne": [
+      "mon",
+      "ta",
+      "gne"
+    ],
+    "girafe": [
+      "gi",
+      "ra",
+      "fe"
+    ],
+    "guitare": [
+      "gui",
+      "ta",
+      "re"
+    ],
+    "salade": [
+      "sa",
+      "la",
+      "de"
+    ]
+  },
+  "syllabes": [
+    "bei",
+    "lle",
+    "llon",
+    "voi",
+    "toi",
+    "te",
+    "pan",
+    "lon",
+    "na",
+    "nas",
+    "cho",
+    "lat",
+    "he",
+    "sson",
+    "cham",
+    "pi",
+    "gnons",
+    "got",
+    "to",
+    "ggan",
+    "vo",
+    "cat",
+    "pa",
+    "sol",
+    "ro",
+    "tte",
+    "kan",
+    "gou",
+    "rou",
+    "cot",
+    "ran",
+    "ci",
+    "trou",
+    "ille",
+    "cien",
+    "es",
+    "lier",
+    "jar",
+    "di",
+    "nier",
+    "bri",
+    "leur",
+    "be",
+    "ron",
+    "rro",
+    "soir",
+    "ce",
+    "ri",
+    "ju",
+    "me",
+    "lles",
+    "pein",
+    "va",
+    "se",
+    "tu",
+    "ko",
+    "a",
+    "o",
+    "li",
+    "ve",
+    "e",
+    "co",
+    "le",
+    "bo",
+    "bi",
+    "pe",
+    "lu",
+    "che",
+    "ca",
+    "ba",
+    "ne",
+    "car",
+    "ble",
+    "fro",
+    "ma",
+    "ge",
+    "mon",
+    "gne",
+    "gi",
+    "ra",
+    "fe",
+    "gui",
+    "ta",
+    "re",
+    "sa",
+    "la",
+    "de"
+  ]
+}

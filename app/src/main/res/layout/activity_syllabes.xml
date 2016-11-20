@@ -1,0 +1,37 @@
+<!-- //Authors : Jordan Chabrier, Arthur Décamp, Ludwig Raepsaet, Nicolas Sagnette, Clément Saubagnac --><!-- //2014 -->
+
+<!-- // LICENCE --><!-- //This file is part of Syllabes. --><!-- // --><!-- //    Syllabes is free software: you can redistribute it and/or modify --><!-- //    it under the terms of the GNU General Public License as published by --><!-- //    the Free Software Foundation, either version 3 of the License, or --><!-- //    (at your option) any later version. --><!-- // --><!-- //    Syllabes is distributed in the hope that it will be useful, --><!-- //    but WITHOUT ANY WARRANTY; without even the implied warranty of --><!-- //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the --><!-- //    GNU General Public License for more details. --><!-- // --><!-- //    You should have received a copy of the GNU General Public License --><!-- //    along with Syllabes.  If not, see <http://www.gnu.org/licenses/>. -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/first_layout_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_accueil"
+    android:baselineAligned="false">
+
+    <Button
+        android:id="@+id/quit_button_id"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_button_quit" />
+
+    <TextView
+        android:id="@+id/touch_screen_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/touchScreen"
+        android:textColor="#1d0bcc"
+        android:textSize="25sp" />
+
+</RelativeLayout>

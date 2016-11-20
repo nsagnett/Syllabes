@@ -1,0 +1,116 @@
+<!-- //Authors : Jordan Chabrier, Arthur Décamp, Ludwig Raepsaet, Nicolas Sagnette, Clément Saubagnac --><!-- //2014 -->
+
+
+<!-- // LICENCE --><!-- //This file is part of Syllabes. --><!-- // --><!-- //    Syllabes is free software: you can redistribute it and/or modify --><!-- //    it under the terms of the GNU General Public License as published by --><!-- //    the Free Software Foundation, either version 3 of the License, or --><!-- //    (at your option) any later version. --><!-- // --><!-- //    Syllabes is distributed in the hope that it will be useful, --><!-- //    but WITHOUT ANY WARRANTY; without even the implied warranty of --><!-- //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the --><!-- //    GNU General Public License for more details. --><!-- // --><!-- //    You should have received a copy of the GNU General Public License --><!-- //    along with Syllabes.  If not, see <http://www.gnu.org/licenses/>. -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_syllabubble"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/answer"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button_cat"
+            android:contentDescription="@string/empty" />
+
+        <Button
+            android:id="@+id/info"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/answer"
+            android:layout_toRightOf="@id/answer"
+            android:background="@drawable/info_black"
+            android:contentDescription="@string/empty" />
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button_return_appli1"
+            android:contentDescription="@string/empty" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bubbleGroup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/first_bubble_syllabe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:minWidth="60dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/second_bubble_syllabe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/first_bubble_syllabe"
+            android:layout_toStartOf="@id/first_bubble_syllabe"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:minWidth="60dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/third_bubble_syllabe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/first_bubble_syllabe"
+            android:layout_toRightOf="@id/first_bubble_syllabe"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:minWidth="60dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/imageTip"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@id/third_bubble_syllabe"
+            android:layout_toRightOf="@id/third_bubble_syllabe"
+            android:contentDescription="@string/empty" />
+    </RelativeLayout>
+
+</LinearLayout>

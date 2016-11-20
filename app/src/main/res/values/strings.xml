@@ -1,0 +1,54 @@
+<!-- //Authors : Jordan Chabrier, Arthur Décamp, Ludwig Raepsaet, Nicolas Sagnette, Clément Saubagnac --><!-- //2014 -->
+
+<!-- // LICENCE --><!-- //This file is part of Syllabes. --><!-- // --><!-- //    Syllabes is free software: you can redistribute it and/or modify --><!-- //    it under the terms of the GNU General Public License as published by --><!-- //    the Free Software Foundation, either version 3 of the License, or --><!-- //    (at your option) any later version. --><!-- // --><!-- //    Syllabes is distributed in the hope that it will be useful, --><!-- //    but WITHOUT ANY WARRANTY; without even the implied warranty of --><!-- //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the --><!-- //    GNU General Public License for more details. --><!-- // --><!-- //    You should have received a copy of the GNU General Public License --><!-- //    along with Syllabes.  If not, see <http://www.gnu.org/licenses/>. -->
+
+<resources>
+
+    <!-- STRINGS GENERALES -->
+
+    <string name="app_name">Syllabes</string>
+    <string name="empty" />
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="welcome">Bienvenue dans l\'application Syllabes !</string>
+    <string name="games_activity">Choix du jeu</string>
+    <string name="descriptionLogo">LogoIUT</string>
+    <string name="descriptionIcone">Icone</string>
+    <string name="touchScreen">Touchez l\'écran pour jouer</string>
+    <string name="victory">Bravo ! Tu as trouvé le mot</string>
+    <string name="mot_mystere">Mot mystere</string>
+    <string name="titre_credits">est un jeu réalisé sur une période de 4 semaines par</string>
+    <string name="equipe">Jordan Chabrier, Arthur Décamp, Ludwig Raepsaet, Nicolas Sagnette, et Clément Saubagnac</string>
+    <string name="formation">dans le cadre du projet tuteuré de Licence Professionnelle DAWIN</string>
+    <string name="lieu">au département Informatique de l\'IUT Bordeaux I</string>
+    <string name="professeurs">sous la supervision de Mme Uny et MM. Giot et Journet</string>
+    <string name="apropos1">Il s\'agit d\'un jeu à portée éducative compatible avec tout type d\'appareil Android</string>
+    <string name="licence">Ce projet est sous licence GPL</string>
+    <string name="annee">2014</string>
+    <!-- STRINGS BOUTONS -->
+
+    <string name="play">Jouer</string>
+    <string name="quit">Quitter</string>
+    <string name="sound_syllabes">SoundSyllabe</string>
+    <string name="syllabubble">SyllaBubble</string>
+    <string name="back">Retour</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="title_activity_sylla_bubble">SyllaBubbleActivity</string>
+    <string name="title_activity_victory">VictoryActivity</string>
+    <string name="replay">Rejouer</string>
+    <string name="menu">Menu</string>
+    <string name="title_activity_credits">Credits</string>
+
+    <!-- STRING DIALOG -->
+
+    <string name="warning">Attention !</string>
+    <string name="text_sdk">Vous ne disposez pas d\'une version suffisamment récente d\'Android pour jouer à ce jeu</string>
+    <string name="ok">OK</string>
+    <string name="advice">Oups !</string>
+    <string name="error">Votre connexion Internet n\'est pas active !</string>
+    <string name="congratulations">Bravo !</string>
+    <string name="congratulations_text">Tu as trouvé 4 bonnes réponses ! Tu as le droit à une surprise ! Veux-tu la découvrir ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
+</resources>

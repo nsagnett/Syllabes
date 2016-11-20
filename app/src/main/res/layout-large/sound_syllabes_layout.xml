@@ -1,0 +1,192 @@
+<!-- //Authors : Jordan Chabrier, Arthur Décamp, Ludwig Raepsaet, Nicolas Sagnette, Clément Saubagnac -->
+<!-- //2014 -->
+
+<!-- // LICENCE -->
+<!-- //This file is part of Syllabes. -->
+<!-- // -->
+<!-- //    Syllabes is free software: you can redistribute it and/or modify -->
+<!-- //    it under the terms of the GNU General Public License as published by -->
+<!-- //    the Free Software Foundation, either version 3 of the License, or -->
+<!-- //    (at your option) any later version. -->
+<!-- // -->
+<!-- //    Syllabes is distributed in the hope that it will be useful, -->
+<!-- //    but WITHOUT ANY WARRANTY; without even the implied warranty of -->
+<!-- //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
+<!-- //    GNU General Public License for more details. -->
+<!-- // -->
+<!-- //    You should have received a copy of the GNU General Public License -->
+<!-- //    along with Syllabes.  If not, see <http://www.gnu.org/licenses/>. -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fond_test"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/answer"
+            android:layout_width="20dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.05"
+            android:background="@drawable/custom_button_cat"
+            android:contentDescription="@string/descriptionLogo" />
+
+        <Button
+            android:id="@+id/info"
+            android:layout_width="20dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.05"
+            android:background="@drawable/info_black"
+            android:contentDescription="@string/descriptionLogo" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:contentDescription="@string/descriptionLogo" />
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="20dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.05"
+            android:background="@drawable/custom_button_return_appli1"
+            android:contentDescription="@string/descriptionLogo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/buttonGroup1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/sound1"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_guitare"
+                android:gravity="center"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/sound2"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_harpe"
+                android:gravity="center"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/sound3"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_maracas"
+                android:gravity="center"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/sound4"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_piano"
+                android:gravity="center"
+                android:textSize="40sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonGroup2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/sound5"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_saxophone"
+                android:gravity="center"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/sound6"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_tambourin"
+                android:gravity="center"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/sound7"
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/icon_trompette"
+                android:gravity="center"
+                android:textSize="40sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/cleanInput"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button_answer"
+            android:contentDescription="@string/descriptionLogo" />
+
+        <TextView
+            android:id="@+id/userInput"
+            android:layout_width="330dp"
+            android:layout_height="70dp"
+            android:background="#cccccc"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="40sp" />
+
+        <Button
+            android:id="@+id/repeatSound"
+            android:layout_width="110dp"
+            android:layout_height="130dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/chef_orchestre"
+            android:contentDescription="@string/descriptionLogo" />
+    </LinearLayout>
+
+</LinearLayout>
