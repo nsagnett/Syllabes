@@ -23,9 +23,12 @@ package com.syllabes.activities.games;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.syllabes.R;
 import com.syllabes.activities.AbstractActivity;
@@ -33,6 +36,9 @@ import com.syllabes.activities.info.SyllaBubbleInfoActivity;
 import com.syllabes.utils.Utils;
 
 public class SyllaBubbleActivity extends AbstractActivity implements OnClickListener {
+
+    private int topLimit;
+    private int bottomLimit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,5 +74,25 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
         findViewById(R.id.answer).setOnClickListener(this);
         findViewById(R.id.back).setOnClickListener(this);
         findViewById(R.id.info).setOnClickListener(this);
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        topLimit = findViewById(R.id.answer).getLayoutParams().height;
+        bottomLimit = metrics.heightPixels - findViewById(R.id.bottomLayout).getLayoutParams().height;
+
+        RelativeLayout bubbleGroup = ((RelativeLayout) findViewById(R.id.bubbleGroup));
+        for (int i = 0; i < 10; i++) {
+            RelativeLayout.LayoutParams btnParams = new RelativeLayout.LayoutParams((int) (60 * metrics.density), (int) (60 * metrics.density));
+            Button b = new Button(this);
+            btnParams.setMargins(i * 15, i * 15, 0, 0);
+            b.setLayoutParams(btnParams);
+            b.setBackgroundResource(R.drawable.custom_button_bubble);
+            b.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+            bubbleGroup.addView(b);
+        }
     }
 }
