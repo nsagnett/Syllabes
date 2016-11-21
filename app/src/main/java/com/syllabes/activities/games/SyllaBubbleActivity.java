@@ -77,11 +77,13 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         topLimit = findViewById(R.id.answer).getLayoutParams().height;
-        bottomLimit = metrics.heightPixels - findViewById(R.id.bottomLayout).getLayoutParams().height;
+        bottomLimit = metrics.heightPixels - findViewById(R.id.imageTip).getLayoutParams().height;
+        int bubbleSize = (int) (60 * metrics.density);
+        int maxWidth = metrics.widthPixels;
 
         RelativeLayout bubbleGroup = ((RelativeLayout) findViewById(R.id.bubbleGroup));
         for (int i = 0; i < 10; i++) {
-            RelativeLayout.LayoutParams btnParams = new RelativeLayout.LayoutParams((int) (60 * metrics.density), (int) (60 * metrics.density));
+            RelativeLayout.LayoutParams btnParams = new RelativeLayout.LayoutParams(bubbleSize, bubbleSize);
             Button b = new Button(this);
             btnParams.setMargins(i * 15, i * 15, 0, 0);
             b.setLayoutParams(btnParams);
