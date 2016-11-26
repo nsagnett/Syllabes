@@ -105,7 +105,7 @@ public class SplashScreenActivity extends AbstractActivity {
                         startActivity(i);
                         finish();
                     }
-                }, 2500);
+                }, 1400);
             }
         }.execute();
     }

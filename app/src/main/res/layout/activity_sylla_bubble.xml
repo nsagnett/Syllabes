@@ -55,63 +55,13 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
-        <TextView
-            android:id="@+id/first_bubble_syllabe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:minWidth="60dp"
-            android:textColor="@android:color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/second_bubble_syllabe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@id/first_bubble_syllabe"
-            android:layout_toStartOf="@id/first_bubble_syllabe"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:minWidth="60dp"
-            android:textColor="@android:color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/third_bubble_syllabe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/first_bubble_syllabe"
-            android:layout_toRightOf="@id/first_bubble_syllabe"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:minWidth="60dp"
-            android:textColor="@android:color/black"
-            android:textSize="15sp" />
-
-        <ImageView
-            android:id="@+id/imageTip"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_toEndOf="@id/third_bubble_syllabe"
-            android:layout_toRightOf="@id/third_bubble_syllabe"
-            android:contentDescription="@string/empty" />
-    </RelativeLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:orientation="horizontal" />
 
 </RelativeLayout>
