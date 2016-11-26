@@ -39,8 +39,6 @@ public class Utils {
 
     public static String reponse = null;
 
-    // Autres
-    public static final int NOMBRE_SYLLABES = 3;
     public static final int DELAI_AFFICHAGE_REPONSE = 1000;
 
     // Lecture d'un son

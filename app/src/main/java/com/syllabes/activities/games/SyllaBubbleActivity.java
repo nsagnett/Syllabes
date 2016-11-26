@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -36,6 +37,8 @@ import com.syllabes.activities.info.SyllaBubbleInfoActivity;
 import com.syllabes.utils.Utils;
 
 public class SyllaBubbleActivity extends AbstractActivity implements OnClickListener {
+
+    private static final int BUBBLE_COUNT_PER_QUEUE = 6;
 
     private int topLimit;
     private int bottomLimit;
@@ -79,22 +82,26 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
         topLimit = findViewById(R.id.answer).getLayoutParams().height;
         bottomLimit = metrics.heightPixels - findViewById(R.id.imageTip).getLayoutParams().height;
         int bubbleSize = (int) (60 * metrics.density);
-        int maxWidth = metrics.widthPixels;
+        int availableWidth = metrics.widthPixels / BUBBLE_COUNT_PER_QUEUE;
 
-        RelativeLayout bubbleGroup = ((RelativeLayout) findViewById(R.id.bubbleGroup));
-        for (int i = 0; i < 10; i++) {
-            RelativeLayout.LayoutParams btnParams = new RelativeLayout.LayoutParams(bubbleSize, bubbleSize);
-            Button b = new Button(this);
-            btnParams.setMargins(i * 15, i * 15, 0, 0);
-            b.setLayoutParams(btnParams);
-            b.setBackgroundResource(R.drawable.custom_button_bubble);
-            b.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-            bubbleGroup.addView(b);
+        final RelativeLayout bubbleGroup = ((RelativeLayout) findViewById(R.id.bubbleGroup));
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < BUBBLE_COUNT_PER_QUEUE; j++) {
+                RelativeLayout.LayoutParams btnParams = new RelativeLayout.LayoutParams(bubbleSize, bubbleSize);
+                Button b = new Button(this);
+                btnParams.setMargins(j * availableWidth + bubbleSize / (int) metrics.density, i * (bubbleSize) + i * bubbleSize / (int) metrics.density, 0, 0);
+                b.setLayoutParams(btnParams);
+                b.setBackgroundResource(R.drawable.custom_button_bubble);
+                b.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Utils.playSound("bubble_pop", SyllaBubbleActivity.this);
+                        bubbleGroup.removeView(view);
+                    }
+                });
+                bubbleGroup.addView(b);
+                b.startAnimation(AnimationUtils.loadAnimation(this, R.anim.upscale));
+            }
         }
     }
 }
