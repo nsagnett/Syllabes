@@ -42,11 +42,6 @@ public class GamesChoiceActivity extends AbstractActivity implements
         findViewById(R.id.sound_syllabes_button).setOnClickListener(this);
         findViewById(R.id.syllabubble_button).setOnClickListener(this);
         findViewById(R.id.speak_button).setOnClickListener(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
         Utils.playSound("choix_jeu", GamesChoiceActivity.this);
     }
 

@@ -23,10 +23,9 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.SparseArray;
-import android.view.View;
 
 import com.syllabes.R;
-import com.syllabes.activities.menu.SyllabesActivity;
+import com.syllabes.activities.menu.GamesChoiceActivity;
 import com.syllabes.model.Word;
 import com.syllabes.utils.Utils;
 
@@ -57,7 +56,7 @@ public abstract class AbstractActivity extends Activity {
         super.onBackPressed();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         Utils.mPlayer.stop();
-        if (this instanceof SyllabesActivity) {
+        if (this instanceof GamesChoiceActivity) {
             Utils.playSound("fin", this);
         }
     }

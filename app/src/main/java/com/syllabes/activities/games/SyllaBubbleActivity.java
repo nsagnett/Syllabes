@@ -195,15 +195,11 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
             a.setStartOffset((i * length) * 200);
             b.startAnimation(a);
         }
-        ImageView imageTip = new ImageView(this);
-        LinearLayout.LayoutParams imgLP = new LinearLayout.LayoutParams(bubbleSize, bubbleSize);
-        imgLP.setMargins(30, 0, 0, 0);
-        imageTip.setLayoutParams(imgLP);
+        ImageView imageTip = ((ImageView) findViewById(R.id.imageTip));
         imageTip.setImageResource(getResources().getIdentifier(randomWord.getLabel(), "drawable", getPackageName()));
 
-        answerViewGroup.addView(imageTip);
         Animation a = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        a.setStartOffset(length * 200);
+        a.setStartOffset(length * 500);
         imageTip.startAnimation(a);
     }
 

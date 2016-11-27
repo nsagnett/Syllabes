@@ -54,6 +54,7 @@ public class SyllabesActivity extends AbstractActivity implements OnClickListene
         switch (v.getId()) {
             case R.id.first_layout_id:
                 startActivity(new Intent(SyllabesActivity.this, GamesChoiceActivity.class));
+                finish();
                 break;
             case R.id.quit_button_id:
                 onBackPressed();

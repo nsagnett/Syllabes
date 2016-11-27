@@ -147,9 +147,13 @@ public class SoundSyllabesActivity extends AbstractActivity implements OnClickLi
                     public void onClick(View view) {
                         toggleClick(false);
                         clickCounter++;
-                        Utils.playSound(b.getText().toString().toLowerCase(), SoundSyllabesActivity.this);
                         userInput.setText(TextUtils.concat(userInput.getText(), b.getText()));
-                        checkWin();
+                        Utils.playSound(b.getText().toString().toLowerCase(), SoundSyllabesActivity.this).setOnCompletionListener(new OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mediaPlayer) {
+                                checkWin();
+                            }
+                        });
                     }
                 });
             }
@@ -173,8 +177,12 @@ public class SoundSyllabesActivity extends AbstractActivity implements OnClickLi
                 finish();
             } else {
                 userInput.setTextColor(android.graphics.Color.RED);
-                Utils.playSound("sound_fail", SoundSyllabesActivity.this);
-                resetScreen();
+                Utils.playSound("sound_fail", SoundSyllabesActivity.this).setOnCompletionListener(new OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        resetScreen();
+                    }
+                });
             }
         } else {
             toggleClick(true);
