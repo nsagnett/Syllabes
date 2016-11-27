@@ -35,6 +35,7 @@ import java.util.Random;
 public abstract class AbstractActivity extends Activity {
     protected static final String WORD_WIN_KEY = "WordWinKey";
     protected static final String GAME_ID_KEY = "GameIdKey";
+    protected static final int SHOW_RESPONSE_TIME = 1000;
 
     protected static ArrayList<Word> Words = new ArrayList<>();
     protected static SparseArray<String> Syllabes = new SparseArray<>();

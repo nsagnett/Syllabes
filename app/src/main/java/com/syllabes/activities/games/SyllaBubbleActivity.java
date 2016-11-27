@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -58,12 +59,10 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
 
     private static final int BUBBLE_COUNT_PER_QUEUE = 6;
     private static final int QUEUE_COUNT = 2;
-    private static final int ANSWER_VIEW_PIXELS_SIZE = 80;
     private static final int BUBBLES_PIXEL_SIZE = 60;
 
-    private DisplayMetrics metrics;
     private ArrayList<Button> bubbles = new ArrayList<>();
-    private ArrayList<TextView> answerTextView = new ArrayList<>();
+    private ArrayList<TextView> answerTextViews = new ArrayList<>();
     private String[] validSyllabes;
 
     private int missingSyllabeCount;
@@ -84,6 +83,19 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
                 onBackPressed();
                 break;
             case R.id.answer:
+                final SparseArray<String> backup = new SparseArray<>();
+                for (int i = 0; i < answerTextViews.size(); i++) {
+                    backup.put(i, answerTextViews.get(i).getText().toString());
+                    answerTextViews.get(i).setText(randomWord.getSyllabes()[i].toUpperCase());
+                }
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i = 0; i < backup.size(); i++) {
+                            answerTextViews.get(i).setText(backup.get(i));
+                        }
+                    }
+                }, SHOW_RESPONSE_TIME);
                 break;
             case R.id.imageTip:
                 AlphaAnimation a = new AlphaAnimation(1.f, 0.f);
@@ -125,11 +137,12 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
         int randomWordSyllabesLength = randomWord.getSyllabes().length;
         validSyllabes = Arrays.copyOf(randomWord.getSyllabes(), randomWordSyllabesLength);
         Random random = new Random();
-        missingSyllabeCount = randomWordSyllabesLength / 2;
 
-        for (int i = 0; i < missingSyllabeCount; i++) {
+        int length = randomWordSyllabesLength / 2;
+        for (int i = 0; i < length; i++) {
             validSyllabes[random.nextInt(randomWordSyllabesLength)] = "";
         }
+        missingSyllabeCount = getMissingSyllabeCount();
 
         prepareAnswerView(randomWordSyllabesLength);
 
@@ -159,7 +172,7 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
         findViewById(R.id.back).setOnClickListener(this);
         findViewById(R.id.info).setOnClickListener(this);
 
-        metrics = getResources().getDisplayMetrics();
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
         int bubbleSize = (int) (BUBBLES_PIXEL_SIZE * metrics.density);
         int availableWidth = metrics.widthPixels / BUBBLE_COUNT_PER_QUEUE;
 
@@ -176,8 +189,8 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
                     @Override
                     public void onClick(final View view) {
                         for (int k = 0; k < validSyllabes.length; k++) {
-                            TextView current = answerTextView.get(k);
-                            if (TextUtils.isEmpty(validSyllabes[k])) {
+                            TextView current = answerTextViews.get(k);
+                            if (TextUtils.isEmpty(current.getText())) {
                                 current.setText(((TextView) view).getText());
                                 missingSyllabeCount--;
                                 break;
@@ -224,7 +237,7 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
             }
             t.setText(validSyllabes[i].toUpperCase());
 
-            answerTextView.add(t);
+            answerTextViews.add(t);
             answerViewGroup.addView(t);
             Animation a = AnimationUtils.loadAnimation(this, R.anim.fadein);
             a.setStartOffset((i * length) * 200);
@@ -240,13 +253,12 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
 
     private void checkWin() {
         if (missingSyllabeCount == 0) {
-            missingSyllabeCount = randomWord.getSyllabes().length / 2;
             String response = "";
-            for (TextView t : answerTextView) {
+            for (TextView t : answerTextViews) {
                 response += t.getText();
             }
             if (response.toLowerCase().equals(randomWord.getLabel())) {
-                for (TextView t : answerTextView) {
+                for (TextView t : answerTextViews) {
                     t.setTextColor(getResources().getColor(R.color.valid));
                     t.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.cadenas_ouvert);
                 }
@@ -266,22 +278,13 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
                     }
                 }, time);
             } else {
-                for (int i = 0; i < validSyllabes.length; i++) {
-                    TextView current = answerTextView.get(i);
-                    String text = current.getText().toString().toLowerCase();
-                    if (TextUtils.isEmpty(validSyllabes[i]) && !text.equals(randomWord.getSyllabes()[i])) {
-                        current.setTextColor(Color.RED);
-                    } else {
-                        validSyllabes[i] = text.toLowerCase();
-                        current.setTextColor(getResources().getColor(R.color.valid));
-                        current.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.cadenas_ouvert);
-                    }
-                }
+                checkSyllabesCompleted(true);
+                missingSyllabeCount = getMissingSyllabeCount();
                 Utils.playSound("sound_fail", SyllaBubbleActivity.this).setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mediaPlayer) {
                         for (int i = 0; i < validSyllabes.length; i++) {
-                            TextView current = answerTextView.get(i);
+                            TextView current = answerTextViews.get(i);
                             if (TextUtils.isEmpty(validSyllabes[i])) {
                                 current.setTextColor(Color.BLACK);
                                 current.setText("");
@@ -289,6 +292,32 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
                         }
                     }
                 });
+            }
+        } else {
+            checkSyllabesCompleted(false);
+        }
+    }
+
+    private int getMissingSyllabeCount() {
+        int count = 0;
+        for (String validSyllabe : validSyllabes) {
+            if (TextUtils.isEmpty(validSyllabe)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private void checkSyllabesCompleted(boolean redColorRequired) {
+        for (int i = 0; i < validSyllabes.length; i++) {
+            TextView current = answerTextViews.get(i);
+            String text = current.getText().toString().toLowerCase();
+            if (TextUtils.isEmpty(validSyllabes[i]) && !text.equals(randomWord.getSyllabes()[i]) && redColorRequired) {
+                current.setTextColor(Color.RED);
+            } else {
+                validSyllabes[i] = text.toLowerCase();
+                current.setTextColor(getResources().getColor(R.color.valid));
+                current.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.cadenas_ouvert);
             }
         }
     }

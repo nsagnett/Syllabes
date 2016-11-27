@@ -108,7 +108,7 @@ public class SoundSyllabesActivity extends AbstractActivity implements OnClickLi
                     public void run() {
                         userInput.setText(backup);
                     }
-                }, Utils.DELAI_AFFICHAGE_REPONSE);
+                }, SHOW_RESPONSE_TIME);
                 break;
 
             case R.id.info:

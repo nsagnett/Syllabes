@@ -39,8 +39,6 @@ public class Utils {
 
     public static String reponse = null;
 
-    public static final int DELAI_AFFICHAGE_REPONSE = 1000;
-
     // Lecture d'un son
     public static MediaPlayer playSound(String resName, Context ctx) {
         if (mPlayer != null) {

@@ -233,7 +233,7 @@ public class SpeakSyllabesActivity extends AbstractActivity implements
                     public void run() {
                         texte.setText("");
                     }
-                }, Utils.DELAI_AFFICHAGE_REPONSE);
+                }, SHOW_RESPONSE_TIME);
                 break;
 
             case R.id.button_speak_info:
