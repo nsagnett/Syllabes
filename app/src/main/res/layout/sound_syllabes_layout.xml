@@ -151,7 +151,7 @@
             android:id="@+id/userInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#cccccc"
+            android:background="@color/user"
             android:gravity="center"
             android:minWidth="200dp"
             android:padding="10dp"
@@ -161,7 +161,7 @@
             android:textSize="25sp" />
 
         <Button
-            android:id="@+id/repeatSound"
+            android:id="@+id/repeat"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"

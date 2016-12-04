@@ -1,7 +1,7 @@
 package com.syllabes.model;
 
 public class Word {
-    private String label;
+    private final String label;
     private String[] syllabes;
     private boolean alreadyUsed;
 

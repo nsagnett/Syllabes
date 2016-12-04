@@ -8,20 +8,20 @@
     android:background="@drawable/background">
 
     <Button
-        android:id="@+id/back_id"
+        android:id="@+id/back"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:background="@drawable/custom_button_return" />
 
     <Button
-        android:id="@+id/sound_syllabes_button"
+        android:id="@+id/soundSyllabes"
         android:layout_width="400dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/custom_button_appli1" />
 
     <Button
-        android:id="@+id/syllabubble_button"
+        android:id="@+id/syllaBubble"
         android:layout_width="400dp"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
@@ -30,7 +30,7 @@
         android:background="@drawable/custom_button_appli2" />
 
     <Button
-        android:id="@+id/speak_button"
+        android:id="@+id/speakSyllabes"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"

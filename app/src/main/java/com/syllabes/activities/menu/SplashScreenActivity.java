@@ -30,14 +30,11 @@ import android.os.Handler;
 import com.syllabes.R;
 import com.syllabes.activities.AbstractActivity;
 import com.syllabes.model.Word;
-import com.syllabes.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 public class SplashScreenActivity extends AbstractActivity {
@@ -50,12 +47,6 @@ public class SplashScreenActivity extends AbstractActivity {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                Utils.SonSyllabes = new HashMap<String, Integer>();
-                Utils.SonMots = new HashMap<String, Integer>();
-                Utils.TexteSyllabes = new ArrayList<String>();
-                Utils.TexteMots = new ArrayList<String>();
-                Utils.ImagesMots = new HashMap<String, Integer>();
-                Utils.Questions = new HashMap<String, Integer>();
                 customFont = Typeface.createFromAsset(getAssets(), "fonts/a_for_a.ttf");
 
                 try {

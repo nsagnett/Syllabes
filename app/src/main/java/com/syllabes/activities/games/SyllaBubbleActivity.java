@@ -44,10 +44,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.syllabes.R;
-import com.syllabes.activities.AbstractActivity;
 import com.syllabes.activities.info.SyllaBubbleInfoActivity;
+import com.syllabes.activities.menu.AbstractGameActivity;
 import com.syllabes.activities.menu.VictoryActivity;
-import com.syllabes.utils.Utils;
+import com.syllabes.utils.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,14 +55,14 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class SyllaBubbleActivity extends AbstractActivity implements OnClickListener {
+public class SyllaBubbleActivity extends AbstractGameActivity implements OnClickListener {
 
     private static final int BUBBLE_COUNT_PER_QUEUE = 6;
     private static final int QUEUE_COUNT = 2;
     private static final int BUBBLES_PIXEL_SIZE = 60;
 
-    private ArrayList<Button> bubbles = new ArrayList<>();
-    private ArrayList<TextView> answerTextViews = new ArrayList<>();
+    private final ArrayList<Button> bubbles = new ArrayList<>();
+    private final ArrayList<TextView> answerTextViews = new ArrayList<>();
     private String[] validSyllabes;
 
     private int missingSyllabeCount;
@@ -164,10 +164,11 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
                 bubbles.get(j).setText(Syllabes.get(random.nextInt(Syllabes.size()) + 1).toUpperCase());
             }
         }
-        Utils.playSound("syllabe_a_trouver", this);
+        Player.playSound("syllabe_a_trouver", this);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         findViewById(R.id.answer).setOnClickListener(this);
         findViewById(R.id.back).setOnClickListener(this);
         findViewById(R.id.info).setOnClickListener(this);
@@ -196,7 +197,7 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
                                 break;
                             }
                         }
-                        Utils.playSound("bubble_pop", SyllaBubbleActivity.this).setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        Player.playSound("bubble_pop", SyllaBubbleActivity.this).setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                             @Override
                             public void onCompletion(MediaPlayer mediaPlayer) {
                                 checkWin();
@@ -216,6 +217,54 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
                 a.setStartOffset(((i + j) + i * BUBBLE_COUNT_PER_QUEUE) * 200);
                 button.startAnimation(a);
             }
+        }
+    }
+
+    @Override
+    protected void checkWin() {
+        if (missingSyllabeCount == 0) {
+            String response = "";
+            for (TextView t : answerTextViews) {
+                response += t.getText();
+            }
+            if (response.toLowerCase().equals(randomWord.getLabel())) {
+                for (TextView t : answerTextViews) {
+                    t.setTextColor(getResources().getColor(R.color.valid));
+                    t.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.cadenas_ouvert);
+                }
+                AnimationDrawable frameAnimation = (AnimationDrawable) findViewById(R.id.tresor).getBackground();
+                int time = 200;
+                for (int i = 0; i < frameAnimation.getNumberOfFrames(); i++) {
+                    time += frameAnimation.getDuration(i);
+                }
+                frameAnimation.start();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(SyllaBubbleActivity.this, VictoryActivity.class)
+                                .putExtra(WORD_WIN_KEY, randomWord.getLabel())
+                                .putExtra(GAME_ID_KEY, SyllaBubbleActivity.class.getSimpleName()));
+                        finish();
+                    }
+                }, time);
+            } else {
+                checkSyllabesCompleted(true);
+                missingSyllabeCount = getMissingSyllabeCount();
+                Player.playSound("sound_fail", SyllaBubbleActivity.this).setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        for (int i = 0; i < validSyllabes.length; i++) {
+                            TextView current = answerTextViews.get(i);
+                            if (TextUtils.isEmpty(validSyllabes[i])) {
+                                current.setTextColor(Color.BLACK);
+                                current.setText("");
+                            }
+                        }
+                    }
+                });
+            }
+        } else {
+            checkSyllabesCompleted(false);
         }
     }
 
@@ -249,53 +298,6 @@ public class SyllaBubbleActivity extends AbstractActivity implements OnClickList
         Animation a = AnimationUtils.loadAnimation(this, R.anim.fadein);
         a.setStartOffset(length * 500);
         imageTip.startAnimation(a);
-    }
-
-    private void checkWin() {
-        if (missingSyllabeCount == 0) {
-            String response = "";
-            for (TextView t : answerTextViews) {
-                response += t.getText();
-            }
-            if (response.toLowerCase().equals(randomWord.getLabel())) {
-                for (TextView t : answerTextViews) {
-                    t.setTextColor(getResources().getColor(R.color.valid));
-                    t.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.cadenas_ouvert);
-                }
-                AnimationDrawable frameAnimation = (AnimationDrawable) findViewById(R.id.tresor).getBackground();
-                int time = 200;
-                for (int i = 0; i < frameAnimation.getNumberOfFrames(); i++) {
-                    time += frameAnimation.getDuration(i);
-                }
-                frameAnimation.start();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        startActivity(new Intent(SyllaBubbleActivity.this, VictoryActivity.class)
-                                .putExtra(WORD_WIN_KEY, randomWord.getLabel())
-                                .putExtra(GAME_ID_KEY, SyllaBubbleActivity.class.getSimpleName()));
-                        finish();
-                    }
-                }, time);
-            } else {
-                checkSyllabesCompleted(true);
-                missingSyllabeCount = getMissingSyllabeCount();
-                Utils.playSound("sound_fail", SyllaBubbleActivity.this).setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        for (int i = 0; i < validSyllabes.length; i++) {
-                            TextView current = answerTextViews.get(i);
-                            if (TextUtils.isEmpty(validSyllabes[i])) {
-                                current.setTextColor(Color.BLACK);
-                                current.setText("");
-                            }
-                        }
-                    }
-                });
-            }
-        } else {
-            checkSyllabesCompleted(false);
-        }
     }
 
     private int getMissingSyllabeCount() {

@@ -29,7 +29,7 @@ import android.widget.TextView;
 
 import com.syllabes.R;
 import com.syllabes.activities.AbstractActivity;
-import com.syllabes.utils.Utils;
+import com.syllabes.utils.Player;
 
 public class SyllabesActivity extends AbstractActivity implements OnClickListener {
 
@@ -46,7 +46,7 @@ public class SyllabesActivity extends AbstractActivity implements OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
-        Utils.playSound("home", this);
+        Player.playSound("home", this);
     }
 
     @Override

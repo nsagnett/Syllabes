@@ -22,24 +22,9 @@ package com.syllabes.utils;
 import android.content.Context;
 import android.media.MediaPlayer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+public class Player {
+    private static MediaPlayer mPlayer = null;
 
-public class Utils {
-    // Stockage des donnees
-    public static HashMap<String, Integer> SonSyllabes = null;
-    public static HashMap<String, Integer> SonMots = null;
-    public static HashMap<String, Integer> ImagesMots = null;
-    public static ArrayList<String> TexteSyllabes = null;
-    public static ArrayList<String> TexteMots = null;
-    public static HashMap<String, Integer> Questions = null;
-
-    // Lecteur audio
-    public static MediaPlayer mPlayer = null;
-
-    public static String reponse = null;
-
-    // Lecture d'un son
     public static MediaPlayer playSound(String resName, Context ctx) {
         if (mPlayer != null) {
             mPlayer.stop();
@@ -49,5 +34,13 @@ public class Utils {
         mPlayer.start();
 
         return mPlayer;
+    }
+
+    public static void stop() {
+        if (mPlayer != null) {
+            mPlayer.stop();
+            mPlayer.release();
+            mPlayer = null;
+        }
     }
 }

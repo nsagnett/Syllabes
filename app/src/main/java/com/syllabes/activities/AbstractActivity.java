@@ -27,7 +27,7 @@ import android.util.SparseArray;
 import com.syllabes.R;
 import com.syllabes.activities.menu.GamesChoiceActivity;
 import com.syllabes.model.Word;
-import com.syllabes.utils.Utils;
+import com.syllabes.utils.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -37,8 +37,8 @@ public abstract class AbstractActivity extends Activity {
     protected static final String GAME_ID_KEY = "GameIdKey";
     protected static final int SHOW_RESPONSE_TIME = 1000;
 
-    protected static ArrayList<Word> Words = new ArrayList<>();
-    protected static SparseArray<String> Syllabes = new SparseArray<>();
+    protected static final ArrayList<Word> Words = new ArrayList<>();
+    protected static final SparseArray<String> Syllabes = new SparseArray<>();
 
     protected Typeface customFont;
     protected Word randomWord;
@@ -56,9 +56,9 @@ public abstract class AbstractActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        Utils.mPlayer.stop();
+        Player.stop();
         if (this instanceof GamesChoiceActivity) {
-            Utils.playSound("fin", this);
+            Player.playSound("fin", this);
         }
     }
 

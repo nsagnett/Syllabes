@@ -33,18 +33,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.syllabes.R;
-import com.syllabes.activities.AbstractActivity;
 import com.syllabes.activities.info.SoundSyllabesInfoActivity;
+import com.syllabes.activities.menu.AbstractGameActivity;
 import com.syllabes.activities.menu.VictoryActivity;
-import com.syllabes.utils.Utils;
+import com.syllabes.utils.Player;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class SoundSyllabesActivity extends AbstractActivity implements OnClickListener {
-    private ArrayList<Button> buttons = new ArrayList<>();
+public class SoundSyllabesActivity extends AbstractGameActivity implements OnClickListener {
+    private final ArrayList<Button> buttons = new ArrayList<>();
 
     private TextView userInput;
 
@@ -79,10 +79,10 @@ public class SoundSyllabesActivity extends AbstractActivity implements OnClickLi
             }
         }
 
-        Utils.playSound("mot_a_trouver", this).setOnCompletionListener(new OnCompletionListener() {
+        Player.playSound("mot_a_trouver", this).setOnCompletionListener(new OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Utils.playSound(randomWord.getLabel(), SoundSyllabesActivity.this);
+                Player.playSound(randomWord.getLabel(), SoundSyllabesActivity.this);
             }
         });
     }
@@ -94,8 +94,8 @@ public class SoundSyllabesActivity extends AbstractActivity implements OnClickLi
                 clickCounter = 0;
                 userInput.setText("");
                 break;
-            case R.id.repeatSound:
-                Utils.playSound(randomWord.getLabel(), SoundSyllabesActivity.this);
+            case R.id.repeat:
+                Player.playSound(randomWord.getLabel(), SoundSyllabesActivity.this);
                 break;
             case R.id.back:
                 onBackPressed();
@@ -118,19 +118,44 @@ public class SoundSyllabesActivity extends AbstractActivity implements OnClickLi
         }
     }
 
-    // Initialisation des vues
-    private void initView() {
+
+    @Override
+    protected void initView() {
         userInput = (TextView) findViewById(R.id.userInput);
         userInput.setTypeface(customFont);
 
         prepareButtons((LinearLayout) findViewById(R.id.buttonGroup1));
         prepareButtons((LinearLayout) findViewById(R.id.buttonGroup2));
 
-        findViewById(R.id.repeatSound).setOnClickListener(this);
+        findViewById(R.id.repeat).setOnClickListener(this);
         findViewById(R.id.back).setOnClickListener(this);
         findViewById(R.id.answer).setOnClickListener(this);
         findViewById(R.id.cleanInput).setOnClickListener(this);
         findViewById(R.id.info).setOnClickListener(this);
+    }
+
+    @Override
+    protected void checkWin() {
+        if (clickCounter == randomWord.getSyllabes().length) {
+            clickCounter = 0;
+            if (userInput.getText().toString().toLowerCase().equals(randomWord.getLabel())) {
+                userInput.setTextColor(ContextCompat.getColor(this, R.color.valid));
+                startActivity(new Intent(SoundSyllabesActivity.this, VictoryActivity.class)
+                        .putExtra(WORD_WIN_KEY, randomWord.getLabel())
+                        .putExtra(GAME_ID_KEY, SoundSyllabesActivity.class.getSimpleName()));
+                finish();
+            } else {
+                userInput.setTextColor(android.graphics.Color.RED);
+                Player.playSound("sound_fail", SoundSyllabesActivity.this).setOnCompletionListener(new OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        resetScreen();
+                    }
+                });
+            }
+        } else {
+            toggleClick(true);
+        }
     }
 
     private void prepareButtons(ViewGroup v) {
@@ -148,7 +173,7 @@ public class SoundSyllabesActivity extends AbstractActivity implements OnClickLi
                         toggleClick(false);
                         clickCounter++;
                         userInput.setText(TextUtils.concat(userInput.getText(), b.getText()));
-                        Utils.playSound(b.getText().toString().toLowerCase(), SoundSyllabesActivity.this).setOnCompletionListener(new OnCompletionListener() {
+                        Player.playSound(b.getText().toString().toLowerCase(), SoundSyllabesActivity.this).setOnCompletionListener(new OnCompletionListener() {
                             @Override
                             public void onCompletion(MediaPlayer mediaPlayer) {
                                 checkWin();
@@ -163,29 +188,6 @@ public class SoundSyllabesActivity extends AbstractActivity implements OnClickLi
     private void toggleClick(boolean enabled) {
         for (Button b : buttons) {
             b.setClickable(enabled);
-        }
-    }
-
-    private void checkWin() {
-        if (clickCounter == randomWord.getSyllabes().length) {
-            clickCounter = 0;
-            if (userInput.getText().toString().toLowerCase().equals(randomWord.getLabel())) {
-                userInput.setTextColor(ContextCompat.getColor(this, R.color.valid));
-                startActivity(new Intent(SoundSyllabesActivity.this, VictoryActivity.class)
-                        .putExtra(WORD_WIN_KEY, randomWord.getLabel())
-                        .putExtra(GAME_ID_KEY, SoundSyllabesActivity.class.getSimpleName()));
-                finish();
-            } else {
-                userInput.setTextColor(android.graphics.Color.RED);
-                Utils.playSound("sound_fail", SoundSyllabesActivity.this).setOnCompletionListener(new OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        resetScreen();
-                    }
-                });
-            }
-        } else {
-            toggleClick(true);
         }
     }
 

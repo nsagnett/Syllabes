@@ -29,7 +29,7 @@ import com.syllabes.activities.AbstractActivity;
 import com.syllabes.activities.games.SoundSyllabesActivity;
 import com.syllabes.activities.games.SpeakSyllabesActivity;
 import com.syllabes.activities.games.SyllaBubbleActivity;
-import com.syllabes.utils.Utils;
+import com.syllabes.utils.Player;
 
 public class VictoryActivity extends AbstractActivity implements
         OnClickListener {
@@ -51,7 +51,7 @@ public class VictoryActivity extends AbstractActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        Utils.playSound("clap_clap_victory", VictoryActivity.this);
+        Player.playSound("clap_clap_victory", VictoryActivity.this);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class VictoryActivity extends AbstractActivity implements
                         startActivity(new Intent(VictoryActivity.this, SoundSyllabesActivity.class));
                     } else if (name.equals(SyllaBubbleActivity.class.getSimpleName())) {
                         startActivity(new Intent(VictoryActivity.this, SyllaBubbleActivity.class));
-                    } else if (name.equals(SyllaBubbleActivity.class.getSimpleName())) {
+                    } else if (name.equals(SpeakSyllabesActivity.class.getSimpleName())) {
                         startActivity(new Intent(VictoryActivity.this, SpeakSyllabesActivity.class));
                     }
                     finish();

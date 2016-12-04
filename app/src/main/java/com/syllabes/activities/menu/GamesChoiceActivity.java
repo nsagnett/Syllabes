@@ -28,7 +28,7 @@ import com.syllabes.activities.AbstractActivity;
 import com.syllabes.activities.games.SoundSyllabesActivity;
 import com.syllabes.activities.games.SpeakSyllabesActivity;
 import com.syllabes.activities.games.SyllaBubbleActivity;
-import com.syllabes.utils.Utils;
+import com.syllabes.utils.Player;
 
 public class GamesChoiceActivity extends AbstractActivity implements
         OnClickListener {
@@ -38,27 +38,27 @@ public class GamesChoiceActivity extends AbstractActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games_choice);
 
-        findViewById(R.id.back_id).setOnClickListener(this);
-        findViewById(R.id.sound_syllabes_button).setOnClickListener(this);
-        findViewById(R.id.syllabubble_button).setOnClickListener(this);
-        findViewById(R.id.speak_button).setOnClickListener(this);
-        Utils.playSound("choix_jeu", GamesChoiceActivity.this);
+        findViewById(R.id.back).setOnClickListener(this);
+        findViewById(R.id.soundSyllabes).setOnClickListener(this);
+        findViewById(R.id.syllaBubble).setOnClickListener(this);
+        findViewById(R.id.speakSyllabes).setOnClickListener(this);
+        Player.playSound("choix_jeu", GamesChoiceActivity.this);
     }
 
     @Override
     public void onClick(View v) {
-        Utils.mPlayer.stop();
+        Player.stop();
         switch (v.getId()) {
-            case R.id.back_id:
+            case R.id.back:
                 onBackPressed();
                 break;
-            case R.id.sound_syllabes_button:
+            case R.id.soundSyllabes:
                 startActivity(new Intent(GamesChoiceActivity.this, SoundSyllabesActivity.class));
                 break;
-            case R.id.syllabubble_button:
+            case R.id.syllaBubble:
                 startActivity(new Intent(GamesChoiceActivity.this, SyllaBubbleActivity.class));
                 break;
-            case R.id.speak_button:
+            case R.id.speakSyllabes:
                 startActivity(new Intent(GamesChoiceActivity.this, SpeakSyllabesActivity.class));
                 break;
         }

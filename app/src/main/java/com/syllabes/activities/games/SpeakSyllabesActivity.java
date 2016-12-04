@@ -29,142 +29,33 @@ import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.syllabes.R;
-import com.syllabes.activities.AbstractActivity;
 import com.syllabes.activities.info.SpeakSyllabesInfoActivity;
+import com.syllabes.activities.menu.AbstractGameActivity;
 import com.syllabes.activities.menu.VictoryActivity;
-import com.syllabes.utils.Utils;
+import com.syllabes.model.Word;
+import com.syllabes.utils.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SpeakSyllabesActivity extends AbstractActivity implements
-        OnClickListener {
+public class SpeakSyllabesActivity extends AbstractGameActivity implements OnClickListener {
 
     private final int RESULT_CODE = 1;
-    private Button micro = null;
-    private Button retour = null;
-    private ImageView image1 = null;
-    private ImageView image2 = null;
-    private ImageView image3 = null;
-    private Button repeter = null;
-    private Button solution = null;
-    private Button info = null;
+    private final Word[] wordsList = new Word[4];
 
-    private ArrayList<ImageView> images_selection = null;
-    private ArrayList<Boolean> images_prises = null;
-    private ArrayList<String> mots = null;
-
-    private TextView texte = null;
-    private Random random = null;
-    private int selecteur;
+    private TextView userText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speak);
 
-		/*initView();
-
-		setClickListeners();
-
-		initArray();
-
-		setImages();
-
-		Utils.playSound(R.raw.intro, this);
-
-		Utils.mPlayer.setOnCompletionListener(new OnCompletionListener() {
-
-			@Override
-			public void onCompletion(MediaPlayer mp) {
-				Utils.playSound(Utils.Questions.get(Utils.reponse),
-						SpeakSyllabesActivity.this);
-			}
-		});
-
-		clearArray();*/
-    }
-
-    /*private void initView() {
-        micro = (Button) findViewById(R.id.button_micro);
-        image1 = (ImageView) findViewById(R.id.image_speak);
-        image2 = (ImageView) findViewById(R.id.image_speak2);
-        image3 = (ImageView) findViewById(R.id.image_speak3);
-        texte = (TextView) findViewById(R.id.texte_utilisateur_speak);
-        retour = (Button) findViewById(R.id.button_speak_return);
-        repeter = (Button) findViewById(R.id.button_speak_repeat);
-        solution = (Button) findViewById(R.id.button_speak_answer);
-        info = (Button) findViewById(R.id.button_speak_info);
-    }
-
-    private void setImages() {
-        selecteur = random.nextInt(Utils.mots_jeu3.size());
-        Utils.reponse = Utils.mots_jeu3.get(selecteur);
-        Utils.mots_jeu3.remove(selecteur);
-        mots.remove(selecteur);
-
-        selecteur = random.nextInt(images_selection.size());
-        images_selection.get(selecteur).setImageResource(
-                Utils.ImagesMots.get(Utils.reponse));
-        images_prises.set(selecteur, true);
-        images_selection.get(selecteur).setContentDescription(Utils.reponse);
-        images_selection.get(selecteur).setOnClickListener(this);
-
-        int taille = images_selection.size();
-        for (int i = 0; i < taille; i++) {
-            if (!images_prises.get(i)) {
-                selecteur = random.nextInt(Utils.mots_jeu3.size());
-                String s = Utils.mots_jeu3.get(selecteur);
-                images_selection.get(i).setImageResource(
-                        Utils.ImagesMots.get(s));
-                images_selection.get(i).setContentDescription(s);
-                images_selection.get(i).setOnClickListener(this);
-                mots.remove(selecteur);
-                images_prises.set(i, true);
-            }
-        }
-    }
-
-    private void clearArray() {
-        images_selection.clear();
-        mots.clear();
-    }
-
-    private void initArray() {
-        random = new Random();
-        images_selection = new ArrayList<ImageView>();
-        images_prises = new ArrayList<Boolean>();
-        mots = new ArrayList<String>();
-        images_selection.add(image1);
-        images_selection.add(image2);
-        images_selection.add(image3);
-        int taille = images_selection.size();
-        for (int i = 0; i < taille; i++) {
-            images_prises.add(false);
-        }
-        taille = Utils.TexteMots.size();
-        for (int i = 0; i < taille; i++) {
-            mots.add(Utils.TexteMots.get(i));
-        }
-
-        if (Utils.mots_jeu3.size() == 0) {
-            for (int i = 0; i < Utils.TexteMots.size(); i++) {
-                Utils.mots_jeu3.add(Utils.TexteMots.get(i));
-            }
-        }
-    }
-
-    private void setClickListeners() {
-        micro.setOnClickListener(this);
-        retour.setOnClickListener(this);
-        repeter.setOnClickListener(this);
-        solution.setOnClickListener(this);
-        info.setOnClickListener(this);
+        initView();
+        prepareWord();
     }
 
     @Override
@@ -173,90 +64,126 @@ public class SpeakSyllabesActivity extends AbstractActivity implements
             ArrayList<String> results = data
                     .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-            String s0 = results.get(0);
+            String s = results.get(0);
 
-            if (s0.contains("�"))
-                s0 = s0.replace('�', 'e');
-
-            Utils.mPlayer_2.start();
-            texte.setText(s0.toUpperCase());
-            texte.setTextColor(getResources().getColor(android.R.color.black));
-            victory();
+            userText.setText(s.toUpperCase());
+            userText.setTextColor(getResources().getColor(android.R.color.black));
+            checkWin();
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }
-*/
-    private void victory() {
-        if (texte.getText().toString().toLowerCase().contains(Utils.reponse)) {
-            texte.setTextColor(getResources().getColor(R.color.valid));
-            Intent i = new Intent(SpeakSyllabesActivity.this,
-                    VictoryActivity.class);
-            i.putExtra(GAME_ID_KEY, SpeakSyllabesActivity.class.getSimpleName());
-            i.putExtra(WORD_WIN_KEY, Utils.reponse);
-            startActivity(i);
-            finish();
-        } else {
-            texte.setTextColor(android.graphics.Color.RED);
-            Utils.playSound("sound_fail", this);
-            Utils.mPlayer.setOnCompletionListener(new OnCompletionListener() {
-
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    texte.setText("");
-                }
-            });
-        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button_speak_return:
+            case R.id.back:
                 onBackPressed();
                 break;
-            case R.id.button_micro:
+            case R.id.micro:
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 startActivityForResult(intent, RESULT_CODE);
                 break;
-            case R.id.button_speak_repeat:
-                /*Utils.playSound(Utils.Questions.get(Utils.reponse),
-                        SpeakSyllabesActivity.this);*/
+            case R.id.repeat:
+                Player.playSound(randomWord.getLabel() + "_question", this);
                 break;
-            case R.id.button_speak_answer:
-                texte.setTextColor(getResources().getColor(android.R.color.black));
-                texte.setText(Utils.reponse.toUpperCase());
+            case R.id.answer:
+                userText.setTextColor(getResources().getColor(android.R.color.black));
+                userText.setText(randomWord.getLabel().toUpperCase());
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
-                        texte.setText("");
+                        userText.setText("");
                     }
                 }, SHOW_RESPONSE_TIME);
                 break;
-
-            case R.id.button_speak_info:
+            case R.id.info:
                 startActivity(new Intent(SpeakSyllabesActivity.this,
                         SpeakSyllabesInfoActivity.class));
                 break;
+            case R.id.firstImage:
+            case R.id.secondImage:
+            case R.id.thirdImage:
+            case R.id.fourthImage:
+                userText.setText(v.getContentDescription().toString().toUpperCase());
+                checkWin();
+                break;
+        }
+    }
 
-            case R.id.image_speak:
-                texte.setText(v.getContentDescription().toString().toUpperCase());
-                victory();
-                break;
+    @Override
+    protected void prepareWord() {
+        super.prepareWord();
+        Random random = new Random();
+        for (int i = 0; i < 4; i++) {
+            Word other;
+            do {
+                other = Words.get(random.nextInt(Words.size()));
+            }
+            while (other.getLabel().equals(randomWord.getLabel()));
+            wordsList[i] = other;
+        }
+        wordsList[random.nextInt(wordsList.length)] = randomWord;
 
-            case R.id.image_speak2:
-                texte.setText(v.getContentDescription().toString().toUpperCase());
-                victory();
-                break;
+        int i = 0;
+        ImageView firstImage = ((ImageView) findViewById(R.id.firstImage));
+        firstImage.setImageResource(getResources().getIdentifier(wordsList[i].getLabel(), "drawable", getPackageName()));
+        firstImage.setContentDescription(wordsList[i++].getLabel());
+        firstImage.setOnClickListener(this);
 
-            case R.id.image_speak3:
-                texte.setText(v.getContentDescription().toString().toUpperCase());
-                victory();
-                break;
-            default:
-                break;
+        ImageView secondImage = ((ImageView) findViewById(R.id.secondImage));
+        secondImage.setImageResource(getResources().getIdentifier(wordsList[i].getLabel(), "drawable", getPackageName()));
+        secondImage.setContentDescription(wordsList[i++].getLabel());
+        secondImage.setOnClickListener(this);
+
+        ImageView thirdImage = ((ImageView) findViewById(R.id.thirdImage));
+        thirdImage.setImageResource(getResources().getIdentifier(wordsList[i].getLabel(), "drawable", getPackageName()));
+        thirdImage.setContentDescription(wordsList[i++].getLabel());
+        thirdImage.setOnClickListener(this);
+
+        ImageView fourthImage = ((ImageView) findViewById(R.id.fourthImage));
+        fourthImage.setImageResource(getResources().getIdentifier(wordsList[i].getLabel(), "drawable", getPackageName()));
+        fourthImage.setContentDescription(wordsList[i].getLabel());
+        fourthImage.setOnClickListener(this);
+
+        Player.playSound("intro", this).setOnCompletionListener(new OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Player.playSound(randomWord.getLabel() + "_question", SpeakSyllabesActivity.this);
+            }
+        });
+    }
+
+    @Override
+    protected void initView() {
+        findViewById(R.id.micro).setOnClickListener(this);
+        findViewById(R.id.back).setOnClickListener(this);
+        findViewById(R.id.answer).setOnClickListener(this);
+        findViewById(R.id.repeat).setOnClickListener(this);
+        findViewById(R.id.info).setOnClickListener(this);
+        userText = (TextView) findViewById(R.id.userText);
+    }
+
+    @Override
+    protected void checkWin() {
+        if (userText.getText().toString().toLowerCase().equals(randomWord.getLabel())) {
+            userText.setTextColor(getResources().getColor(R.color.valid));
+            startActivity(new Intent(SpeakSyllabesActivity.this, VictoryActivity.class)
+                    .putExtra(GAME_ID_KEY, SpeakSyllabesActivity.class.getSimpleName())
+                    .putExtra(WORD_WIN_KEY, randomWord.getLabel()));
+            finish();
+        } else {
+            userText.setTextColor(android.graphics.Color.RED);
+            Player.playSound("sound_fail", this).setOnCompletionListener(new OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    userText.setText("");
+                }
+            });
         }
     }
 }

@@ -1,156 +1,133 @@
-<!-- //Authors : Jordan Chabrier, Arthur Décamp, Ludwig Raepsaet, Nicolas Sagnette, Clément Saubagnac -->
-<!-- //2014 -->
+<!-- //Authors : Jordan Chabrier, Arthur Décamp, Ludwig Raepsaet, Nicolas Sagnette, Clément Saubagnac --><!-- //2014 -->
 
-<!-- // LICENCE -->
-<!-- //This file is part of Syllabes. -->
-<!-- // -->
-<!-- //    Syllabes is free software: you can redistribute it and/or modify -->
-<!-- //    it under the terms of the GNU General Public License as published by -->
-<!-- //    the Free Software Foundation, either version 3 of the License, or -->
-<!-- //    (at your option) any later version. -->
-<!-- // -->
-<!-- //    Syllabes is distributed in the hope that it will be useful, -->
-<!-- //    but WITHOUT ANY WARRANTY; without even the implied warranty of -->
-<!-- //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the -->
-<!-- //    GNU General Public License for more details. -->
-<!-- // -->
-<!-- //    You should have received a copy of the GNU General Public License -->
-<!-- //    along with Syllabes.  If not, see <http://www.gnu.org/licenses/>. -->
+<!-- // LICENCE --><!-- //This file is part of Syllabes. --><!-- // --><!-- //    Syllabes is free software: you can redistribute it and/or modify --><!-- //    it under the terms of the GNU General Public License as published by --><!-- //    the Free Software Foundation, either version 3 of the License, or --><!-- //    (at your option) any later version. --><!-- // --><!-- //    Syllabes is distributed in the hope that it will be useful, --><!-- //    but WITHOUT ANY WARRANTY; without even the implied warranty of --><!-- //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the --><!-- //    GNU General Public License for more details. --><!-- // --><!-- //    You should have received a copy of the GNU General Public License --><!-- //    along with Syllabes.  If not, see <http://www.gnu.org/licenses/>. -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_speak"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/answer"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button_cat"
+            android:contentDescription="@string/empty" />
+
+        <Button
+            android:id="@+id/info"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/answer"
+            android:layout_toRightOf="@id/answer"
+            android:background="@drawable/info_black"
+            android:contentDescription="@string/empty" />
+
+        <Button
+            android:id="@+id/repeat"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/info"
+            android:layout_toRightOf="@id/info"
+            android:background="@drawable/custom_button_repeat"
+            android:contentDescription="@string/empty" />
+
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button_return_appli1"
+            android:contentDescription="@string/empty" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/button_speak_repeat"
-            android:layout_width="20dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="0.1"
-            android:background="@drawable/custom_button_repeat"
-            android:contentDescription="@string/descriptionLogo" />
-
-        <Button
-            android:id="@+id/button_speak_info"
-            android:layout_width="20dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="0.1"
-            android:background="@drawable/info_black"
-            android:contentDescription="@string/descriptionLogo" />
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="130dp"
-            android:layout_weight="0.9"
-            android:contentDescription="@string/descriptionLogo" />
-
-        <Button
-            android:id="@+id/button_speak_answer"
-            android:layout_width="20dp"
-            android:layout_height="60dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="0.1"
-            android:background="@drawable/custom_button_cat"
-            android:contentDescription="@string/descriptionLogo" />
-
-        <Button
-            android:id="@+id/button_speak_return"
-            android:layout_width="20dp"
-            android:layout_height="60dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="0.1"
-            android:background="@drawable/custom_button_return_appli1"
-            android:contentDescription="@string/descriptionLogo" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:baselineAligned="false"
-        android:orientation="horizontal" >
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/image_speak"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/descriptionLogo" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/image_speak2"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/descriptionLogo" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:id="@+id/image_speak3"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/descriptionLogo" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5" >
-
-        <TextView
-            android:id="@+id/texte_utilisateur_speak"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center_vertical"
-            android:background="@android:color/white"
-            android:gravity="center"
-            android:textSize="22sp" />
-
-        <Button
-            android:id="@+id/button_micro"
+            android:id="@+id/firstImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="26dp"
-            android:background="@drawable/custom_button_micro"
-            android:contentDescription="@string/descriptionLogo" />
-    </RelativeLayout>
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:contentDescription="@string/empty" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/secondImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:contentDescription="@string/empty" />
+
+        <ImageView
+            android:id="@+id/thirdImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:contentDescription="@string/empty" />
+
+        <ImageView
+            android:id="@+id/fourthImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/empty" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/userText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/user"
+        android:gravity="center"
+        android:minWidth="200dp"
+        android:padding="10dp"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/micro"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@id/userText"
+        android:layout_toRightOf="@id/userText"
+        android:background="@drawable/custom_button_micro"
+        android:contentDescription="@string/empty" />
+
+</RelativeLayout>
