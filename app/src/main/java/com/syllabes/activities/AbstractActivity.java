@@ -26,8 +26,8 @@ import android.util.SparseArray;
 
 import com.syllabes.R;
 import com.syllabes.activities.menu.GamesChoiceActivity;
-import com.syllabes.model.Word;
-import com.syllabes.utils.Player;
+import com.syllabes.res.Word;
+import com.syllabes.res.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -72,7 +72,7 @@ public abstract class AbstractActivity extends Activity {
     }
 
     private void initWords() {
-        if (Words != null && Words.size() > 0) {
+        if (Words.size() > 0) {
             boolean find = false;
             int i = 0;
             while (!find && i < Words.size()) {

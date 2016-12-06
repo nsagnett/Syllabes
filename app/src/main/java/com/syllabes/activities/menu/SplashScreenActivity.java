@@ -29,7 +29,7 @@ import android.os.Handler;
 
 import com.syllabes.R;
 import com.syllabes.activities.AbstractActivity;
-import com.syllabes.model.Word;
+import com.syllabes.res.Word;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

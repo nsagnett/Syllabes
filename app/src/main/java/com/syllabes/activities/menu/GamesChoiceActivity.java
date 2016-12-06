@@ -28,7 +28,7 @@ import com.syllabes.activities.AbstractActivity;
 import com.syllabes.activities.games.SoundSyllabesActivity;
 import com.syllabes.activities.games.SpeakSyllabesActivity;
 import com.syllabes.activities.games.SyllaBubbleActivity;
-import com.syllabes.utils.Player;
+import com.syllabes.res.Player;
 
 public class GamesChoiceActivity extends AbstractActivity implements
         OnClickListener {

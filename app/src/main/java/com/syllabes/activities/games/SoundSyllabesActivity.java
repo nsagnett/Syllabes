@@ -19,8 +19,6 @@
 package com.syllabes.activities.games;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -36,7 +34,8 @@ import com.syllabes.R;
 import com.syllabes.activities.info.SoundSyllabesInfoActivity;
 import com.syllabes.activities.menu.AbstractGameActivity;
 import com.syllabes.activities.menu.VictoryActivity;
-import com.syllabes.utils.Player;
+import com.syllabes.res.OnWaitingCompletionListener;
+import com.syllabes.res.Player;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -79,12 +78,8 @@ public class SoundSyllabesActivity extends AbstractGameActivity implements OnCli
             }
         }
 
-        Player.playSound("mot_a_trouver", this).setOnCompletionListener(new OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Player.playSound(randomWord.getLabel(), SoundSyllabesActivity.this);
-            }
-        });
+        Player.playSound("mot_a_trouver", this)
+                .setOnCompletionListener(mp -> Player.playSound(randomWord.getLabel(), SoundSyllabesActivity.this));
     }
 
     @Override
@@ -103,12 +98,7 @@ public class SoundSyllabesActivity extends AbstractGameActivity implements OnCli
             case R.id.answer:
                 final CharSequence backup = userInput.getText();
                 userInput.setText(randomWord.getLabel().toUpperCase());
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        userInput.setText(backup);
-                    }
-                }, SHOW_RESPONSE_TIME);
+                new Handler().postDelayed(() -> userInput.setText(backup), SHOW_RESPONSE_TIME);
                 break;
 
             case R.id.info:
@@ -146,12 +136,7 @@ public class SoundSyllabesActivity extends AbstractGameActivity implements OnCli
                 finish();
             } else {
                 userInput.setTextColor(android.graphics.Color.RED);
-                Player.playSound("sound_fail", SoundSyllabesActivity.this).setOnCompletionListener(new OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        resetScreen();
-                    }
-                });
+                Player.playSound("sound_fail", SoundSyllabesActivity.this).setOnCompletionListener(new OnWaitingCompletionListener(this::resetScreen));
             }
         } else {
             toggleClick(true);
@@ -167,19 +152,11 @@ public class SoundSyllabesActivity extends AbstractGameActivity implements OnCli
                 final Button b = (Button) child;
                 b.setTypeface(customFont);
                 buttons.add(b);
-                b.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        toggleClick(false);
-                        clickCounter++;
-                        userInput.setText(TextUtils.concat(userInput.getText(), b.getText()));
-                        Player.playSound(b.getText().toString().toLowerCase(), SoundSyllabesActivity.this).setOnCompletionListener(new OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                checkWin();
-                            }
-                        });
-                    }
+                b.setOnClickListener(view -> {
+                    toggleClick(false);
+                    clickCounter++;
+                    userInput.setText(TextUtils.concat(userInput.getText(), b.getText()));
+                    Player.playSound(b.getText().toString().toLowerCase(), SoundSyllabesActivity.this).setOnCompletionListener(new OnWaitingCompletionListener(this::checkWin));
                 });
             }
         }

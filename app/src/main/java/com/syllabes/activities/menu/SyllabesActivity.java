@@ -29,7 +29,7 @@ import android.widget.TextView;
 
 import com.syllabes.R;
 import com.syllabes.activities.AbstractActivity;
-import com.syllabes.utils.Player;
+import com.syllabes.res.Player;
 
 public class SyllabesActivity extends AbstractActivity implements OnClickListener {
 

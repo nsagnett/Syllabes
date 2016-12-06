@@ -24,7 +24,6 @@ package com.syllabes.activities.games;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -47,7 +46,8 @@ import com.syllabes.R;
 import com.syllabes.activities.info.SyllaBubbleInfoActivity;
 import com.syllabes.activities.menu.AbstractGameActivity;
 import com.syllabes.activities.menu.VictoryActivity;
-import com.syllabes.utils.Player;
+import com.syllabes.res.OnWaitingCompletionListener;
+import com.syllabes.res.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -88,12 +88,9 @@ public class SyllaBubbleActivity extends AbstractGameActivity implements OnClick
                     backup.put(i, answerTextViews.get(i).getText().toString());
                     answerTextViews.get(i).setText(randomWord.getSyllabes()[i].toUpperCase());
                 }
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = 0; i < backup.size(); i++) {
-                            answerTextViews.get(i).setText(backup.get(i));
-                        }
+                new Handler().postDelayed(() -> {
+                    for (int i = 0; i < backup.size(); i++) {
+                        answerTextViews.get(i).setText(backup.get(i));
                     }
                 }, SHOW_RESPONSE_TIME);
                 break;
@@ -186,29 +183,21 @@ public class SyllaBubbleActivity extends AbstractGameActivity implements OnClick
                 button.setLayoutParams(btnParams);
                 button.setTextColor(Color.BLACK);
                 button.setBackgroundResource(R.drawable.custom_button_bubble);
-                button.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(final View view) {
-                        for (int k = 0; k < validSyllabes.length; k++) {
-                            TextView current = answerTextViews.get(k);
-                            if (TextUtils.isEmpty(current.getText())) {
-                                current.setText(((TextView) view).getText());
-                                missingSyllabeCount--;
-                                break;
-                            }
+                button.setOnClickListener(view -> {
+                    for (int k = 0; k < validSyllabes.length; k++) {
+                        TextView current = answerTextViews.get(k);
+                        if (TextUtils.isEmpty(current.getText())) {
+                            current.setText(((TextView) view).getText());
+                            missingSyllabeCount--;
+                            break;
                         }
-                        Player.playSound("bubble_pop", SyllaBubbleActivity.this).setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                checkWin();
-                            }
-                        });
-                        bubbleGroup.removeView(view);
-                        bubbleGroup.addView(button);
-                        Animation a = AnimationUtils.loadAnimation(SyllaBubbleActivity.this, R.anim.upscale);
-                        a.setStartOffset(200);
-                        button.startAnimation(a);
                     }
+                    Player.playSound("bubble_pop", SyllaBubbleActivity.this).setOnCompletionListener(mediaPlayer -> checkWin());
+                    bubbleGroup.removeView(view);
+                    bubbleGroup.addView(button);
+                    Animation a = AnimationUtils.loadAnimation(SyllaBubbleActivity.this, R.anim.upscale);
+                    a.setStartOffset(200);
+                    button.startAnimation(a);
                 });
                 bubbles.add(button);
                 bubbleGroup.addView(button);
@@ -238,30 +227,24 @@ public class SyllaBubbleActivity extends AbstractGameActivity implements OnClick
                     time += frameAnimation.getDuration(i);
                 }
                 frameAnimation.start();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        startActivity(new Intent(SyllaBubbleActivity.this, VictoryActivity.class)
-                                .putExtra(WORD_WIN_KEY, randomWord.getLabel())
-                                .putExtra(GAME_ID_KEY, SyllaBubbleActivity.class.getSimpleName()));
-                        finish();
-                    }
+                new Handler().postDelayed(() -> {
+                    startActivity(new Intent(SyllaBubbleActivity.this, VictoryActivity.class)
+                            .putExtra(WORD_WIN_KEY, randomWord.getLabel())
+                            .putExtra(GAME_ID_KEY, SyllaBubbleActivity.class.getSimpleName()));
+                    finish();
                 }, time);
             } else {
                 checkSyllabesCompleted(true);
                 missingSyllabeCount = getMissingSyllabeCount();
-                Player.playSound("sound_fail", SyllaBubbleActivity.this).setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        for (int i = 0; i < validSyllabes.length; i++) {
-                            TextView current = answerTextViews.get(i);
-                            if (TextUtils.isEmpty(validSyllabes[i])) {
-                                current.setTextColor(Color.BLACK);
-                                current.setText("");
-                            }
+                Player.playSound("sound_fail", SyllaBubbleActivity.this).setOnCompletionListener(new OnWaitingCompletionListener(() -> {
+                    for (int i = 0; i < validSyllabes.length; i++) {
+                        TextView current = answerTextViews.get(i);
+                        if (TextUtils.isEmpty(validSyllabes[i])) {
+                            current.setTextColor(Color.BLACK);
+                            current.setText("");
                         }
                     }
-                });
+                }));
             }
         } else {
             checkSyllabesCompleted(false);

@@ -21,9 +21,10 @@
 
 package com.syllabes.activities.games;
 
+import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnCompletionListener;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
@@ -36,8 +37,9 @@ import com.syllabes.R;
 import com.syllabes.activities.info.SpeakSyllabesInfoActivity;
 import com.syllabes.activities.menu.AbstractGameActivity;
 import com.syllabes.activities.menu.VictoryActivity;
-import com.syllabes.model.Word;
-import com.syllabes.utils.Player;
+import com.syllabes.res.OnWaitingCompletionListener;
+import com.syllabes.res.Player;
+import com.syllabes.res.Word;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -61,12 +63,16 @@ public class SpeakSyllabesActivity extends AbstractGameActivity implements OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULT_CODE && resultCode == RESULT_OK) {
-            ArrayList<String> results = data
+            ArrayList<String> suggestions = data
                     .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-            String s = results.get(0);
+            String best = suggestions.get(0);
+            if (best.split(" ").length <= 2) {
+                userText.setText(best.toUpperCase());
+            } else {
+                userText.setText("TROP LONG !");
+            }
 
-            userText.setText(s.toUpperCase());
             userText.setTextColor(getResources().getColor(android.R.color.black));
             checkWin();
         }
@@ -91,13 +97,7 @@ public class SpeakSyllabesActivity extends AbstractGameActivity implements OnCli
             case R.id.answer:
                 userText.setTextColor(getResources().getColor(android.R.color.black));
                 userText.setText(randomWord.getLabel().toUpperCase());
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        userText.setText("");
-                    }
-                }, SHOW_RESPONSE_TIME);
+                new Handler().postDelayed(() -> userText.setText(""), SHOW_RESPONSE_TIME);
                 break;
             case R.id.info:
                 startActivity(new Intent(SpeakSyllabesActivity.this,
@@ -148,13 +148,7 @@ public class SpeakSyllabesActivity extends AbstractGameActivity implements OnCli
         fourthImage.setContentDescription(wordsList[i].getLabel());
         fourthImage.setOnClickListener(this);
 
-        Player.playSound("intro", this).setOnCompletionListener(new OnCompletionListener() {
-
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Player.playSound(randomWord.getLabel() + "_question", SpeakSyllabesActivity.this);
-            }
-        });
+        Player.playSound("intro", this).setOnCompletionListener(mp -> Player.playSound(randomWord.getLabel() + "_question", SpeakSyllabesActivity.this));
     }
 
     @Override
@@ -169,7 +163,7 @@ public class SpeakSyllabesActivity extends AbstractGameActivity implements OnCli
 
     @Override
     protected void checkWin() {
-        if (userText.getText().toString().toLowerCase().equals(randomWord.getLabel())) {
+        if (userText.getText().toString().toLowerCase().contains(randomWord.getLabel())) {
             userText.setTextColor(getResources().getColor(R.color.valid));
             startActivity(new Intent(SpeakSyllabesActivity.this, VictoryActivity.class)
                     .putExtra(GAME_ID_KEY, SpeakSyllabesActivity.class.getSimpleName())
@@ -177,13 +171,8 @@ public class SpeakSyllabesActivity extends AbstractGameActivity implements OnCli
             finish();
         } else {
             userText.setTextColor(android.graphics.Color.RED);
-            Player.playSound("sound_fail", this).setOnCompletionListener(new OnCompletionListener() {
 
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    userText.setText("");
-                }
-            });
+            Player.playSound("sound_fail", this).setOnCompletionListener(new OnWaitingCompletionListener(() -> userText.setText("")));
         }
     }
 }

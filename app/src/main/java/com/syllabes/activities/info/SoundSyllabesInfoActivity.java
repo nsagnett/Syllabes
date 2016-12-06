@@ -19,8 +19,6 @@
 package com.syllabes.activities.info;
 
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 import com.syllabes.R;
 import com.syllabes.activities.AbstractActivity;
@@ -31,12 +29,6 @@ public class SoundSyllabesInfoActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound_info);
-        findViewById(R.id.layout_sound_info).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        findViewById(R.id.layout_sound_info).setOnClickListener(v -> onBackPressed());
     }
 }

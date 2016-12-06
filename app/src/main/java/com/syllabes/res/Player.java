@@ -17,7 +17,7 @@
 //-----------------------------------------
 
 
-package com.syllabes.utils;
+package com.syllabes.res;
 
 import android.content.Context;
 import android.media.MediaPlayer;

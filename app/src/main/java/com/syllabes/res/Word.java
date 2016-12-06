@@ -1,4 +1,4 @@
-package com.syllabes.model;
+package com.syllabes.res;
 
 public class Word {
     private final String label;
