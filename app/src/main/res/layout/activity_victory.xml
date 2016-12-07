@@ -6,7 +6,7 @@
     android:id="@+id/layout_victory_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgound_victory"
+    android:background="@drawable/img_backgound_victory"
     android:orientation="vertical">
 
     <LinearLayout

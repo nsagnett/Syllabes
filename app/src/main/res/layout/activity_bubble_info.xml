@@ -21,7 +21,7 @@
     android:id="@+id/layout_bubble_info"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/help_game2"
+    android:background="@drawable/img_help_game2"
     android:orientation="vertical" >
 
 </LinearLayout>

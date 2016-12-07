@@ -5,7 +5,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_speak"
+    android:background="@drawable/img_background_speak"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -31,7 +31,7 @@
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/answer"
             android:layout_toRightOf="@id/answer"
-            android:background="@drawable/info_black"
+            android:background="@drawable/img_info_black"
             android:contentDescription="@string/empty" />
 
         <Button

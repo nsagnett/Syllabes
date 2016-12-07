@@ -106,7 +106,7 @@ public class SyllaBubbleActivity extends AbstractGameActivity implements OnClick
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        ((ImageView) v).setImageResource(getResources().getIdentifier(randomWord.getLabel(), "drawable", getPackageName()));
+                        ((ImageView) v).setImageResource(getResources().getIdentifier("img_" + randomWord.getLabel(), "drawable", getPackageName()));
                         AlphaAnimation a = new AlphaAnimation(0.f, 1.f);
                         a.setFillAfter(true);
                         a.setDuration(400);
@@ -219,7 +219,7 @@ public class SyllaBubbleActivity extends AbstractGameActivity implements OnClick
             if (response.toLowerCase().equals(randomWord.getLabel())) {
                 for (TextView t : answerTextViews) {
                     t.setTextColor(getResources().getColor(R.color.valid));
-                    t.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.cadenas_ouvert);
+                    t.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.img_cadenas_ouvert);
                 }
                 AnimationDrawable frameAnimation = (AnimationDrawable) findViewById(R.id.tresor).getBackground();
                 int time = 200;
@@ -262,10 +262,10 @@ public class SyllaBubbleActivity extends AbstractGameActivity implements OnClick
             t.setGravity(Gravity.CENTER);
             if (TextUtils.isEmpty(validSyllabes[i])) {
                 t.setTextColor(Color.BLACK);
-                t.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.cadenas_ferme);
+                t.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.img_cadenas_ferme);
             } else {
                 t.setTextColor(getResources().getColor(R.color.valid));
-                t.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.cadenas_ouvert);
+                t.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.img_cadenas_ouvert);
             }
             t.setText(validSyllabes[i].toUpperCase());
 
@@ -302,7 +302,7 @@ public class SyllaBubbleActivity extends AbstractGameActivity implements OnClick
             } else {
                 validSyllabes[i] = text.toLowerCase();
                 current.setTextColor(getResources().getColor(R.color.valid));
-                current.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.cadenas_ouvert);
+                current.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.img_cadenas_ouvert);
             }
         }
     }

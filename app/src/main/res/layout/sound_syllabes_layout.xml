@@ -6,7 +6,7 @@
     android:id="@+id/layout_sound_syllabes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fond_test"
+    android:background="@drawable/img_fond_test"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -33,7 +33,7 @@
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/answer"
             android:layout_toRightOf="@id/answer"
-            android:background="@drawable/info_black"
+            android:background="@drawable/img_info_black"
             android:contentDescription="@string/empty" />
 
         <Button
@@ -63,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/icon_guitare"
+            android:background="@drawable/img_icon_guitare"
             android:gravity="center"
             android:textSize="20sp" />
 
@@ -72,7 +72,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/icon_harpe"
+            android:background="@drawable/img_icon_harpe"
             android:gravity="center"
             android:textSize="20sp" />
 
@@ -81,7 +81,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/icon_maracas"
+            android:background="@drawable/img_icon_maracas"
             android:gravity="center"
             android:textSize="20sp" />
 
@@ -90,7 +90,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/icon_piano"
+            android:background="@drawable/img_icon_piano"
             android:gravity="center"
             android:textSize="20sp" />
     </LinearLayout>
@@ -108,7 +108,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/icon_saxophone"
+            android:background="@drawable/img_icon_saxophone"
             android:gravity="center"
             android:textSize="20sp" />
 
@@ -117,7 +117,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/icon_tambourin"
+            android:background="@drawable/img_icon_tambourin"
             android:gravity="center"
             android:textSize="20sp" />
 
@@ -126,7 +126,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/icon_trompette"
+            android:background="@drawable/img_icon_trompette"
             android:gravity="center"
             android:textSize="20sp" />
     </LinearLayout>
@@ -166,7 +166,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
-            android:background="@drawable/chef_orchestre"
+            android:background="@drawable/img_chef_orchestre"
             android:contentDescription="@string/empty" />
     </LinearLayout>
 

@@ -21,10 +21,7 @@
 
 package com.syllabes.activities.games;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
@@ -129,22 +126,22 @@ public class SpeakSyllabesActivity extends AbstractGameActivity implements OnCli
 
         int i = 0;
         ImageView firstImage = ((ImageView) findViewById(R.id.firstImage));
-        firstImage.setImageResource(getResources().getIdentifier(wordsList[i].getLabel(), "drawable", getPackageName()));
+        firstImage.setImageResource(getResources().getIdentifier("img_" + wordsList[i].getLabel(), "drawable", getPackageName()));
         firstImage.setContentDescription(wordsList[i++].getLabel());
         firstImage.setOnClickListener(this);
 
         ImageView secondImage = ((ImageView) findViewById(R.id.secondImage));
-        secondImage.setImageResource(getResources().getIdentifier(wordsList[i].getLabel(), "drawable", getPackageName()));
+        secondImage.setImageResource(getResources().getIdentifier("img_" + wordsList[i].getLabel(), "drawable", getPackageName()));
         secondImage.setContentDescription(wordsList[i++].getLabel());
         secondImage.setOnClickListener(this);
 
         ImageView thirdImage = ((ImageView) findViewById(R.id.thirdImage));
-        thirdImage.setImageResource(getResources().getIdentifier(wordsList[i].getLabel(), "drawable", getPackageName()));
+        thirdImage.setImageResource(getResources().getIdentifier("img_" + wordsList[i].getLabel(), "drawable", getPackageName()));
         thirdImage.setContentDescription(wordsList[i++].getLabel());
         thirdImage.setOnClickListener(this);
 
         ImageView fourthImage = ((ImageView) findViewById(R.id.fourthImage));
-        fourthImage.setImageResource(getResources().getIdentifier(wordsList[i].getLabel(), "drawable", getPackageName()));
+        fourthImage.setImageResource(getResources().getIdentifier("img_" + wordsList[i].getLabel(), "drawable", getPackageName()));
         fourthImage.setContentDescription(wordsList[i].getLabel());
         fourthImage.setOnClickListener(this);
 
