@@ -16,35 +16,23 @@
 
         <Button
             android:id="@+id/answer"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="@dimen/head_button_size"
+            android:layout_height="@dimen/head_button_size"
+            android:layout_marginLeft="@dimen/head_button_margin"
+            android:layout_marginStart="@dimen/head_button_margin"
+            android:layout_marginTop="@dimen/head_button_margin"
             android:background="@drawable/custom_button_cat"
             android:contentDescription="@string/empty" />
 
         <Button
-            android:id="@+id/info"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/answer"
-            android:layout_toRightOf="@id/answer"
-            android:background="@drawable/img_info_black"
-            android:contentDescription="@string/empty" />
-
-        <Button
             android:id="@+id/back"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/head_button_size"
+            android:layout_height="@dimen/head_button_size"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/head_button_margin"
+            android:layout_marginRight="@dimen/head_button_margin"
+            android:layout_marginTop="@dimen/head_button_margin"
             android:background="@drawable/custom_button_return_appli1"
             android:contentDescription="@string/empty" />
     </RelativeLayout>
@@ -53,13 +41,14 @@
         android:id="@+id/bubbleGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:padding="@dimen/bubble_group_padding" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="@dimen/bottom_layout_margin">
 
         <LinearLayout
             android:id="@+id/bottomLayout"
@@ -70,24 +59,13 @@
             android:orientation="horizontal" />
 
         <ImageView
-            android:id="@+id/tresor"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_toLeftOf="@id/bottomLayout"
-            android:layout_toStartOf="@id/bottomLayout"
-            android:background="@drawable/custom_animated_tresor"
-            android:contentDescription="@string/empty" />
-
-        <ImageView
             android:id="@+id/imageTip"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/tip_image_size"
+            android:layout_height="@dimen/tip_image_size"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginEnd="@dimen/tip_image_margin"
+            android:layout_marginRight="@dimen/tip_image_margin"
             android:contentDescription="@string/empty"
             android:src="@drawable/img_help" />
 

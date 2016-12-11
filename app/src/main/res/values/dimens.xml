@@ -4,4 +4,79 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Home screen -->
+    <!-- Red cross -->
+    <dimen name="red_cross_size">50dp</dimen>
+    <dimen name="red_cross_margin">10dp</dimen>
+
+    <!-- Touch text -->
+    <dimen name="touch_text_size">25sp</dimen>
+    <dimen name="touch_text_margin">10dp</dimen>
+
+
+    <!-- Game choices-->
+    <!-- Cloud button -->
+    <dimen name="cloud_button_size">180dp</dimen>
+
+    <!-- Sound Syllabes -->
+    <dimen name="sound_syllabes_width">400dp</dimen>
+    <dimen name="sound_syllabes_height">150dp</dimen>
+
+    <!-- Sylla Bubble-->
+    <dimen name="sylla_bubble_width">400dp</dimen>
+    <dimen name="sylla_bubble_height">150dp</dimen>
+
+    <!-- Speak Syllabes -->
+    <dimen name="speak_syllabes_width">250dp</dimen>
+    <dimen name="speak_syllabes_height">150dp</dimen>
+
+    <!-- All games-->
+    <dimen name="head_button_size">60dp</dimen>
+    <dimen name="head_button_margin">10dp</dimen>
+
+    <!-- Sound Syllabes-->
+    <!-- Syllabe button -->
+    <dimen name="instrument_size">90dp</dimen>
+    <dimen name="instrument_margin">15dp</dimen>
+    <dimen name="instrument_text_size">20sp</dimen>
+
+    <!-- others button -->
+    <dimen name="clean_button_size">90dp</dimen>
+    <dimen name="clean_button_margin">20sp</dimen>
+    <dimen name="repeat_button_size">90dp</dimen>
+    <dimen name="repeat_button_margin">20sp</dimen>
+
+    <dimen name="user_input_min_width">200dp</dimen>
+    <dimen name="user_input_padding">10dp</dimen>
+    <dimen name="user_input_padding_top_bottom">2sp</dimen>
+    <dimen name="user_input_text_size">25sp</dimen>
+
+    <!-- SyllaBubble-->
+    <dimen name="bottom_layout_margin">5dp</dimen>
+    <dimen name="bubble_group_padding">5dp</dimen>
+
+    <dimen name="tip_image_size">70dp</dimen>
+    <dimen name="tip_image_margin">10dp</dimen>
+
+    <dimen name="bubble_image_size">70dp</dimen>
+    <dimen name="bubble_image_margin">10dp</dimen>
+    <dimen name="bubble_text_size">10sp</dimen>
+
+    <dimen name="bubble_image_answer_size">70dp</dimen>
+    <dimen name="bubble_image_answer_margin">10dp</dimen>
+    <dimen name="bubble_answer_text_size">10sp</dimen>
+
+    <!-- SpeakSyllabes-->
+    <dimen name="image_size">80dp</dimen>
+    <dimen name="image_margin">30dp</dimen>
+    <dimen name="user_input_margin">10dp</dimen>
+
+    <dimen name="micro_size">90dp</dimen>
+    <dimen name="micro_margin">20dp</dimen>
+
+    <!-- Victory-->
+    <dimen name="victory_image_size">100dp</dimen>
+    <dimen name="victory_button_size">100dp</dimen>
+    <dimen name="victory_button_margin">30dp</dimen>
+
 </resources>

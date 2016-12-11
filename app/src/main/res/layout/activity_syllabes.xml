@@ -11,13 +11,13 @@
 
     <Button
         android:id="@+id/quit_button_id"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/red_cross_size"
+        android:layout_height="@dimen/red_cross_size"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/red_cross_margin"
+        android:layout_marginRight="@dimen/red_cross_margin"
+        android:layout_marginTop="@dimen/red_cross_margin"
         android:background="@drawable/custom_button_quit" />
 
     <TextView
@@ -27,11 +27,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginBottom="@dimen/touch_text_margin"
+        android:layout_marginEnd="@dimen/touch_text_margin"
+        android:layout_marginRight="@dimen/touch_text_margin"
         android:text="@string/touchScreen"
         android:textColor="#1d0bcc"
-        android:textSize="25sp" />
+        android:textSize="@dimen/touch_text_size" />
 
 </RelativeLayout>

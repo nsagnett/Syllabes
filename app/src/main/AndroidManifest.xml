@@ -4,7 +4,7 @@
 <!-- // LICENCE --><!-- //This file is part of Syllabes. --><!-- // --><!-- //    Syllabes is free software: you can redistribute it and/or modify --><!-- //    it under the terms of the GNU General Public License as published by --><!-- //    the Free Software Foundation, either version 3 of the License, or --><!-- //    (at your option) any later version. --><!-- // --><!-- //    Syllabes is distributed in the hope that it will be useful, --><!-- //    but WITHOUT ANY WARRANTY; without even the implied warranty of --><!-- //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the --><!-- //    GNU General Public License for more details. --><!-- // --><!-- //    You should have received a copy of the GNU General Public License --><!-- //    along with Syllabes.  If not, see <http://www.gnu.org/licenses/>. -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.syllabes">
+    package="com.syllabes.v2">
 
     <application
         android:allowBackup="true"
@@ -44,33 +44,15 @@
             android:screenOrientation="sensorLandscape"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
-        <!-- Sound Syllabes Info -->
-        <activity
-            android:name=".activities.info.SoundSyllabesInfoActivity"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-
-        <!-- Syllabubble SDK 8 -->
+        <!-- Syllabubble -->
         <activity
             android:name=".activities.games.SyllaBubbleActivity"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-
-        <!-- Syllabubble Info -->
-        <activity
-            android:name=".activities.info.SyllaBubbleInfoActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
         <!-- Speak Syllabes -->
         <activity
             android:name=".activities.games.SpeakSyllabesActivity"
-            android:screenOrientation="sensorLandscape"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-
-        <!-- Speak Syllabes Info -->
-        <activity
-            android:name=".activities.info.SpeakSyllabesInfoActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
