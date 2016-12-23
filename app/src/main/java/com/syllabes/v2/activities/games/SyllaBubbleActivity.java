@@ -182,7 +182,7 @@ public class SyllaBubbleActivity extends AbstractGameActivity implements OnClick
                 button.setBackgroundResource(R.drawable.custom_button_bubble);
                 button.setOnClickListener(new OnClickListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(final View view) {
                         for (int k = 0; k < validSyllabes.length; k++) {
                             TextView current = answerTextViews.get(k);
                             if (TextUtils.isEmpty(current.getText())) {
