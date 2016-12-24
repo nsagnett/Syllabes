@@ -88,7 +88,7 @@ public class SpeakSyllabesActivity extends AbstractGameActivity implements OnCli
                 startActivityForResult(intent, RESULT_CODE);
                 break;
             case R.id.repeat:
-                Player.playSound(randomWord.getLabel() + "_question", this);
+                Player.ask(randomWord.getLabel(), this);
                 break;
             case R.id.answer:
                 userText.setTextColor(getResources().getColor(android.R.color.black));
@@ -148,7 +148,7 @@ public class SpeakSyllabesActivity extends AbstractGameActivity implements OnCli
         Player.playSound("intro", this).setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                Player.playSound(randomWord.getLabel() + "_question", SpeakSyllabesActivity.this);
+                Player.ask(randomWord.getLabel(), SpeakSyllabesActivity.this);
             }
         });
     }

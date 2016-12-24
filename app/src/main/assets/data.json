@@ -224,9 +224,26 @@
       "sa",
       "la",
       "de"
+    ],
+    "nuage": [
+      "nu",
+      "age"
+    ],
+    "soleil": [
+      "so",
+      "leil"
+    ],
+    "pomme": [
+      "po",
+      "mme"
     ]
   },
   "syllabes": [
+    "nu",
+    "age",
+    "po",
+    "mme",
+    "lan",
     "bei",
     "lle",
     "llon",
@@ -253,6 +270,8 @@
     "sol",
     "ro",
     "tte",
+    "so",
+    "leil",
     "kan",
     "gou",
     "rou",

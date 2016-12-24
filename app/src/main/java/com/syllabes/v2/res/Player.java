@@ -36,6 +36,10 @@ public class Player {
         return mPlayer;
     }
 
+    public static MediaPlayer ask(String resName, Context ctx) {
+        return playSound(resName + "_question", ctx);
+    }
+
     public static void stop() {
         if (mPlayer != null) {
             mPlayer.stop();
